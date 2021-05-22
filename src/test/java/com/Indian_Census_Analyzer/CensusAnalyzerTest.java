@@ -16,7 +16,7 @@ public class CensusAnalyzerTest {
 		Assert.assertEquals(1, numOfRecords);
   }
 	@Test
-	public void given_IndiaCensusData_WithWrongFile_ShoulThrewException() throws IOException {
+	public void given_IndiaCensusData_With_Wrong_File_Should_Throw_Exception() throws IOException {
 		try {
 			CensusAnalyzer censusAnalyZer = new CensusAnalyzer();
 			ExpectedException exceptionRule = ExpectedException.none();
@@ -27,7 +27,7 @@ public class CensusAnalyzerTest {
 		}
 	}
 	@Test
-	public void given_IndiaCensusData_WithCorrectFile_ButWrongType_ShoulThrewException() throws IOException{
+	public void given_IndiaCensusData_With_Correct_File_ButWrongType_Should_Throw_Exception() throws IOException{
 		try {
 			CensusAnalyzer censusAnalyZer = new CensusAnalyzer();
 			ExpectedException exceptionRule = ExpectedException.none();
@@ -35,6 +35,18 @@ public class CensusAnalyzerTest {
 			censusAnalyZer.loadIndiaCensusData(WRONG_FILE_TYPE);
 		} catch(CensusAnalyzerException e) {
 			Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+		}
+	}
+	
+	@Test
+	public void given_IndiaCensusData_WithCorrect_File_But_Wrong_Delimiter_Should_Throw_Exception() throws IOException{
+		try {
+			CensusAnalyzer censusAnalyZer = new CensusAnalyzer();
+			ExpectedException exceptionRule = ExpectedException.none();
+			exceptionRule.expect(IOException.class);
+			censusAnalyZer.loadIndiaCensusDataFile(INDIA_CENSUS_CSV_FILE_PATH);
+		} catch(CensusAnalyzerException e) {
+			Assert.assertEquals(CensusAnalyzerException.ExceptionType.UNABLE_TO_PARSE, e.type);
 		}
 	}
 
