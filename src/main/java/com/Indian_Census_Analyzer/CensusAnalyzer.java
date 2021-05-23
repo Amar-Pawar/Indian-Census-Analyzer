@@ -1,4 +1,5 @@
 package com.Indian_Census_Analyzer;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class CensusAnalyzer
 		try{
 			reader= new CSVReader(new FileReader(csvFilePath),'.');
 			String [] nextLine;
-			while ((nextLine=reader.readNext())!= null)  //returns a boolean value  
+			while ((nextLine=reader.readNext())!= null)   
 			{  
 				   return true;   
 			}   
